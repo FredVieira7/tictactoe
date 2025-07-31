@@ -48,8 +48,8 @@ export const BoardWrapper = styled.div`
 `
 
 export const Cell = styled.button`
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   font-size: 2rem;
   font-weight: bold;
   border: 2px solid #000;
