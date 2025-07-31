@@ -115,7 +115,7 @@ const Board = ({ colors }) => {
   }
 
   const handleLoad = () => {
-    const loaded = loadFromStorage('scores')
+    const loaded = loadFromStorage('tictactoe.scores')
     if (loaded) {
       setScores(loaded)
       triggerToast('Placar carregado com sucesso!')
