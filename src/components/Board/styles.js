@@ -1,5 +1,19 @@
 import styled from 'styled-components'
 
+export const BoardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`
+
+export const BoardContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 4rem;
+`
+
 export const ScoreBoard = styled.div`
   display: flex;
   justify-content: center;

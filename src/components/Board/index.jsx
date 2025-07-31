@@ -4,6 +4,8 @@ import { loadFromStorage, saveToStorage } from '../../utils/storage'
 import Footer from '../Footer'
 import Toast from '../Toast'
 import {
+  BoardContainer,
+  BoardContent,
   BoardWrapper,
   ButtonsWrapper,
   Cell,
@@ -121,52 +123,56 @@ const Board = ({ colors }) => {
   }
 
   return (
-    <>
-      <ScoreBoard>
-        <ScoreBox isActive={currentPlayer === 'X'}>
-          <PlayerLabel color={colors.x}>Jogador X</PlayerLabel>
-          <ScoreValue color={colors.x}>{scores.X}</ScoreValue>
-          {currentPlayer === 'X' && <TimerDisplay>⏱️ {timer}s</TimerDisplay>}
-        </ScoreBox>
-        <ScoreBox isActive={currentPlayer === 'O'}>
-          <PlayerLabel color={colors.o}>Jogador O</PlayerLabel>
-          <ScoreValue color={colors.o}>{scores.O}</ScoreValue>
-          {currentPlayer === 'O' && <TimerDisplay>⏱️ {timer}s</TimerDisplay>}
-        </ScoreBox>
-      </ScoreBoard>
-
-      <BoardWrapper>
-        {board.map((cell, i) => (
-          <Cell
-            key={i}
-            onClick={() => handleClick(i)}
-            disabled={!!cell || !!winner}
-            color={colors.board}
-            textColor={
-              cell === 'X' ? colors.x : cell === 'O' ? colors.o : colors.text
-            }
-          >
-            {cell}
-          </Cell>
-
-        ))}
-      </BoardWrapper>
-
-      <InfoPanel>
-        <StatusText textColor={colors.text}>
-          {getStatusMessage({ gameOver, winner, scores, board, currentPlayer })}
-        </StatusText>
-
-        <ButtonsWrapper>
-          <ResetButton onClick={resetBoard} disabled={gameOver}>
-            Nova Rodada
-          </ResetButton>
-          <ResetButton danger onClick={resetScores}>Resetar Placar</ResetButton>
-        </ButtonsWrapper>
-      </InfoPanel>
-      <Footer onSave={handleSave} onLoad={handleLoad} />
-      {showToast && <Toast>{toastMessage}</Toast>}
-    </>
+      <BoardContainer>
+        <BoardContent>
+          <ScoreBoard>
+            <ScoreBox isActive={currentPlayer === 'X'}>
+              <PlayerLabel color={colors.x}>Jogador X</PlayerLabel>
+              <ScoreValue color={colors.x}>{scores.X}</ScoreValue>
+              {currentPlayer === 'X' && <TimerDisplay>⏱️ {timer}s</TimerDisplay>}
+            </ScoreBox>
+            <ScoreBox isActive={currentPlayer === 'O'}>
+              <PlayerLabel color={colors.o}>Jogador O</PlayerLabel>
+              <ScoreValue color={colors.o}>{scores.O}</ScoreValue>
+              {currentPlayer === 'O' && <TimerDisplay>⏱️ {timer}s</TimerDisplay>}
+            </ScoreBox>
+          </ScoreBoard>
+    
+          <BoardWrapper>
+            {board.map((cell, i) => (
+              <Cell
+                key={i}
+                onClick={() => handleClick(i)}
+                disabled={!!cell || !!winner}
+                color={colors.board}
+                textColor={
+                  cell === 'X' ? colors.x : cell === 'O' ? colors.o : colors.text
+                }
+              >
+                {cell}
+              </Cell>
+            ))}
+          </BoardWrapper>
+    
+          <InfoPanel>
+            <StatusText textColor={colors.text}>
+              {getStatusMessage({ gameOver, winner, scores, board, currentPlayer })}
+            </StatusText>
+    
+            <ButtonsWrapper>
+              <ResetButton onClick={resetBoard} disabled={gameOver}>
+                Nova Rodada
+              </ResetButton>
+              <ResetButton danger onClick={resetScores}>Resetar Placar</ResetButton>
+            </ButtonsWrapper>
+          </InfoPanel>
+        </BoardContent>
+    
+        <Footer onSave={handleSave} onLoad={handleLoad} />
+        {showToast && <Toast>{toastMessage}</Toast>}
+      </BoardContainer>
+    
+    
   )
 }
 

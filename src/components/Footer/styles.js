@@ -1,17 +1,15 @@
 import styled from 'styled-components'
 
 export const FooterWrapper = styled.footer`
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   padding: 1rem 2rem;
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
   border-top: 1px solid #ccc;
-  z-index: 999;
+  margin-top: 2rem;
 `
+
 
 export const FooterButton = styled.button`
   background-color: #111;
